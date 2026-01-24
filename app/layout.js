@@ -4,7 +4,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -17,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Patreon Clone V2",
-  description: "This website is crowdfunding website",
+  description: "A crowdfunding platform built with Next.js",
 };
 
 export default function RootLayout({ children }) {
@@ -26,23 +25,18 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-white`}
       >
-       
-        <div className="min-h-screen [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#331a76_100%)]">
-          
+        <div className="min-h-screen flex flex-col [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#331a76_100%)]">
           <Navbar />
 
-          <main className="min-h-[86.5vh]">
-            {children}
-          </main>
+          <main className="flex-1">{children}</main>
 
           <Footer />
 
+          <Script
+            src="https://cdn.lordicon.com/lordicon.js"
+            strategy="afterInteractive"
+          />
         </div>
-        <Script
-  src="https://cdn.lordicon.com/lordicon.js"
-  strategy="afterInteractive"
-/>
-
       </body>
     </html>
   );

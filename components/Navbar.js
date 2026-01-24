@@ -1,21 +1,27 @@
-import React from 'react'
+import React from "react";
+import Image from "next/image";
 
 const Navbar = () => {
   return (
-    <nav className=' text-white font-bold flex justify-between px-3 h-12 items-center'>
-      
+    <nav className=" text-white font-bold flex justify-between px-3 h-12 items-center">
       <div className="logo font-bold text-lg flex gap-2 justify-center items-center">
-        <span>
-          Patreon Clone V2
-          </span>
-         <lord-icon
+        <span>Patreon Clone V2</span>
+        <lord-icon
               src="https://cdn.lordicon.com/oyxqonng.json"
               trigger="loop"
               stroke="bold"
               state="loop-cycle"
               style={{ width:30, height:30 }}
             />
-        </div>
+
+        {/* <Image
+          src="/manworking.svg"
+          alt="Man working"
+          width={50}
+          height={50}
+          className="ml-2"
+        /> */}
+      </div>
       <ul className="flex justify-between gap-4">
         <li>Home</li>
         <li>About</li>
@@ -23,9 +29,8 @@ const Navbar = () => {
         <li>Sign Up</li>
         <li>Login</li>
       </ul>
-      
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
