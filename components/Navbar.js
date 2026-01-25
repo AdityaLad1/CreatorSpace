@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -7,12 +8,12 @@ const Navbar = () => {
       <div className="logo font-bold text-lg flex gap-2 justify-center items-center">
         <span>Patreon Clone V2</span>
         <lord-icon
-              src="https://cdn.lordicon.com/oyxqonng.json"
-              trigger="loop"
-              stroke="bold"
-              state="loop-cycle"
-              style={{ width:30, height:30 }}
-            />
+          src="https://cdn.lordicon.com/oyxqonng.json"
+          trigger="loop"
+          stroke="bold"
+          state="loop-cycle"
+          style={{ width: 30, height: 30 }}
+        />
 
         {/* <Image
           src="/manworking.svg"
@@ -22,13 +23,27 @@ const Navbar = () => {
           className="ml-2"
         /> */}
       </div>
-      <ul className="flex justify-between gap-4">
+      {/* <ul className="flex justify-between gap-4">
         <li>Home</li>
         <li>About</li>
         <li>Projects</li>
         <li>Sign Up</li>
         <li>Login</li>
-      </ul>
+      </ul> */}
+      <div>
+        <Link  href={"/login"}>
+        <button
+          type="button"
+          className="text-white bg-gradient-to-br from-purple-600 to-blue-500 
+          hover:bg-gradient-to-bl focus:ring-4 focus:outline-none 
+          focus:ring-blue-300 dark:focus:ring-blue-800 
+          font-medium text-sm px-4 py-2 leading-5 rounded-xl
+          transition-all duration-200 hover:scale-105"
+          >
+          Login
+        </button>{" "}
+          </Link>
+      </div>
     </nav>
   );
 };
