@@ -14,7 +14,7 @@ export default function SocialAuthButtons() {
     <div className="flex flex-col gap-3 max-w-xs">
       {providers.map((provider) => (
         <button
-          onClick={() => signIn(provider.id)}
+          onClick={() => signIn(provider.id,{ callbackUrl: "/dashboard" })}
           key={provider.name}
           className="flex items-center bg-white border border-gray-300 rounded-lg shadow-md
           px-6 py-2 text-sm font-medium text-gray-800
