@@ -1,5 +1,6 @@
 "use client";
 
+import { signIn } from "next-auth/react";
 import GoogleIcon from "@/components/icons/GoogleIcon";
 import GithubIcon from "@/components/icons/GithubIcon";
 import LinkedinIcon from "@/components/icons/LinkedInIcon";
@@ -20,7 +21,7 @@ export default function SocialAuthButtons() {
   return (
     <div className="flex flex-col gap-3 max-w-xs">
       {providers.map((provider) => (
-        <button
+        <button onClick={()=>signIn("github")}
           key={provider.name}
           className="flex items-center bg-white border border-gray-300 rounded-lg shadow-md
           px-6 py-2 text-sm font-medium text-gray-800

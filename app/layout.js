@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Script from "next/script";
-
+import SessionWrapper from "@/components/SessionWrapper";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -25,18 +25,20 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-white`}
       >
-        <div className="min-h-screen flex flex-col [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#331a76_100%)]">
-          <Navbar />
+        <SessionWrapper>
+          <div className="min-h-screen flex flex-col [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#331a76_100%)]">
+            <Navbar />
 
-          <main className="flex-1">{children}</main>
+            <main className="flex-1">{children}</main>
 
-          <Footer />
+            <Footer />
 
-          <Script
-            src="https://cdn.lordicon.com/lordicon.js"
-            strategy="afterInteractive"
-          />
-        </div>
+            <Script
+              src="https://cdn.lordicon.com/lordicon.js"
+              strategy="afterInteractive"
+            />
+          </div>
+        </SessionWrapper>
       </body>
     </html>
   );
