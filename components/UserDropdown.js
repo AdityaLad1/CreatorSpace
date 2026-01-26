@@ -64,7 +64,7 @@ export default function UserDropdown() {
 
             <li>
               <button
-                onClick={() => signOut()}
+                onClick={() => signOut({ callbackUrl: "/login" })}
                 className="w-full text-left p-2 rounded hover:bg-red-600"
               >
                 Sign out
