@@ -10,7 +10,10 @@ const Navbar = () => {
 
   return (
     <nav className=" text-white font-bold flex justify-between px-3 h-12 items-center">
-      <div className="logo font-bold text-lg flex gap-2 justify-center items-center">
+      <Link
+        className="logo font-bold text-lg flex gap-2 justify-center items-center"
+        href={"/"}
+      >
         <span>Patreon Clone V2</span>
         <lord-icon
           src="https://cdn.lordicon.com/oyxqonng.json"
@@ -19,7 +22,7 @@ const Navbar = () => {
           state="loop-cycle"
           style={{ width: 30, height: 30 }}
         />
-      </div>
+      </Link>
 
       <div>
         {session ? (
