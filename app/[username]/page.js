@@ -8,7 +8,7 @@ export default async function Username({ params }) {
 
   return (
     <>
-      <div className="cover w-full relative h-[350px]">
+      <div className="cover w-full relative h-87.5">
         <Image
           src={animatedDungeunImage}
           alt="Cover"
@@ -19,7 +19,7 @@ export default async function Username({ params }) {
         />
 
         <div
-          className="absolute -bottom-20 left-1/2 -translate-x-1/2 border-white border-2 w-[120px] h-[120px]
+          className="absolute -bottom-20 left-1/2 -translate-x-1/2 border-white border-2 w-30 h-30
                 rounded-full overflow-hidden"
         >
           <Image src={cat2} alt="Profile" fill className="object-cover" />
