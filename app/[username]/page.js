@@ -41,13 +41,72 @@ export default async function Username({ params }) {
             >
               Supporters
             </h2>
-            <ul className="mx-3">
-              <li className="my-2">Ojas donated $500 with a message</li>
-              <li className="my-2">Ojas donated $500 with a message</li>
-              <li className="my-2">Ojas donated $500 with a message</li>
-              <li className="my-2">Ojas donated $500 with a message</li>
-              <li className="my-2">Ojas donated $500 with a message</li>
-              <li className="my-2">Ojas donated $500 with a message</li>
+            <ul className="mx-5 text-lg ">
+              <li className="my-4 flex items-center gap-2">
+                <lord-icon
+                  src="https://cdn.lordicon.com/vrexohmd.json"
+                  trigger="loop"
+                  delay="3000"
+                  stroke="bold"
+                  style={{ width: 40, height: 40 }}
+                />
+                <span>
+                  Ojas donated <span className="text-green-500">$500</span> with
+                  a message "I support you bro with lots of ❤️"
+                </span>
+              </li>
+              <li className="my-4 flex items-center gap-2">
+                <lord-icon
+                  src="https://cdn.lordicon.com/vrexohmd.json"
+                  trigger="loop"
+                  delay="3000"
+                  stroke="bold"
+                  style={{ width: 40, height: 40 }}
+                />
+                <span>
+                  Ojas donated <span className="text-green-500">$500</span> with
+                  a message "I support you bro with lots of ❤️"
+                </span>
+              </li>
+              <li className="my-4 flex items-center gap-2">
+                <lord-icon
+                  src="https://cdn.lordicon.com/vrexohmd.json"
+                  trigger="loop"
+                  delay="3000"
+                  stroke="bold"
+                  style={{ width: 40, height: 40 }}
+                />
+                <span>
+                  Ojas donated <span className="text-green-500">$500</span> with
+                  a message "I support you bro with lots of ❤️"
+                </span>
+              </li>
+              <li className="my-4 flex items-center gap-2">
+                <lord-icon
+                  src="https://cdn.lordicon.com/vrexohmd.json"
+                  trigger="loop"
+                  delay="3000"
+                  stroke="bold"
+                  style={{ width: 40, height: 40 }}
+                />
+                <span>
+                  Ojas donated <span className="text-green-500">$500</span> with
+                  a message "I support you bro with lots of ❤️"
+                </span>
+              </li>
+              <li className="my-4 flex items-center gap-2">
+                <lord-icon
+                  src="https://cdn.lordicon.com/vrexohmd.json"
+                  trigger="loop"
+                  delay="3000"
+                  stroke="bold"
+                  style={{ width: 40, height: 40 }}
+                />
+                <span >
+                  Ojas donated <span className="text-green-500">$500</span> with
+                  a message "I support you bro with lots of ❤️"
+                </span>
+              </li>
             </ul>
           </div>
           <div className="makepayment w-1/2 bg-slate-800 rounded-lg  p-8">
@@ -70,13 +129,16 @@ export default async function Username({ params }) {
               />
               <button
                 type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 hover:scale-105 w-fit"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 hover:scale-105 w-full  "
               >
-                Donate
+                Pay
               </button>
             </form>
             <div>
-              choose from this Amounts
+              <span className="text-slate-400">
+                Or choose from this Amounts
+              </span>
+
               <div className="flex gap-3 my-3">
                 <button className="bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 hover:scale-105">
                   $5
