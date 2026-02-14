@@ -10,14 +10,14 @@ export default function UserDropdown() {
   return (
     <div
       className="relative"
-      onClick={() => setOpen(!open)}
-      onBlur={() =>
-        setTimeout(() => {
-          setOpen(false);
-        }, 100)
-      }
+      // onClick={() => setOpen(!open)}
+      // onBlur={() =>
+      //   setTimeout(() => {
+      //     setOpen(false);
+      //   }, 100)
+      // }
     >
-      <button
+      <button onClick={() => setOpen(!open)}
         className="flex justify-center items-center text-white bg-gradient-to-br from-purple-600 to-blue-500 
               hover:bg-gradient-to-bl focus:ring-4 focus:outline-none 
               focus:ring-blue-300 dark:focus:ring-blue-800 
@@ -65,7 +65,7 @@ export default function UserDropdown() {
             <li>
               <button
                 onClick={() => signOut({ callbackUrl: "/login" })}
-                className="w-full text-left p-2 rounded hover:bg-red-600 hover:cursor-pointer"
+                className="w-full text-left p-2 rounded hover:bg-red-600 hover:cursor-pointer text-red-500 font-bold hover:text-white transition-all duration-200 "
               >
                 Sign out
               </button>

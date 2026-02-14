@@ -18,5 +18,10 @@ export default function Dashboard() {
 
   if (!session) return null;
 
-  return <div>dashboard</div>;
+  return <div>
+    <h1 className="text-3xl font-bold text-white">Welcome, {session.user.name}!</h1>
+    <p className="text-white mt-4">This is your dashboard. You can manage your content and view your supporters here.</p>
+
+    <input type="text" placeholder="Create a new post..." className="w-full p-4 mt-6 rounded-lg bg-neutral-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+  </div>;
 }
