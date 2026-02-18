@@ -10,12 +10,19 @@ export default function UserDropdown() {
   return (
     <div
       className="relative"
-      // onClick={() => setOpen(!open)}
+      onClick={() => setOpen(!open)}
       // onBlur={() =>
       //   setTimeout(() => {
       //     setOpen(false);
       //   }, 100)
       // }
+      // close the dropdown when hovering outside of it for 100ms
+      onMouseLeave={() => {
+        setTimeout(() => {
+          setOpen(false);
+        }, 3000);
+      }}
+
     >
       <button onClick={() => setOpen(!open)}
         className="flex justify-center items-center text-white bg-gradient-to-br from-purple-600 to-blue-500 

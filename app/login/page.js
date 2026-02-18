@@ -4,6 +4,10 @@ import SocialAuthButtons from "@/components/SocialAuthButtons";
 import { useSession, signIn, signOut } from "next-auth/react"
 
 export default function Login() {
+  const {data:session}=useSession()
+  if(session){
+    
+  }
   return (
     <div className=" text-white py-14 container mx-auto">
       <h1 className="text-center font-bold text-3xl">
