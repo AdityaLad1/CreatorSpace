@@ -4,6 +4,8 @@ import GoogleProvider from "next-auth/providers/google";
 import mongoose from "mongoose";
 import User from "@/models/User";
 import Payment from "@/models/Payment";
+import connectDB from "@/db/connectDb";
+import { signIn } from "next-auth/react";
 
 export const authOptions = {
   providers: [
@@ -17,9 +19,39 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      if (account.providers == "github") {
-        const client = await mongoose.connect();
+    async signIn({ user }) {
+      try {
+        await connectDB();
+        const existingUser = await User.findOne({ email: user.email });
+        if (!existingUser) {
+          await User.create({
+            email: user.email,
+            username: user.email.split("@")[0],
+          });
+        }
+        return true;
+      } catch (error) {
+        console.error("SignIn Error:", error);
+        return false;
+      }
+    },
+    async session({ session }) {
+      try {
+        await connectDB();
+
+        const dbUser = await User.findOne({
+          email: session.user.email,
+        });
+
+        if (dbUser) {
+          session.user.username = dbUser.username;
+          // session.user.name = dbUser.username; // override display name
+        }
+
+        return session;
+      } catch (error) {
+        console.error("Session Error:", error);
+        return session;
       }
     },
   },

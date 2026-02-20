@@ -60,7 +60,8 @@ export default function Dashboard() {
           className="w-full p-4 mt-6 rounded-lg bg-neutral-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           onChange={handleChange}
           id="username"
-          value={form.username || session?.user?.username || ""}
+          value={form.username || session?.user?.name || ""}
+          
         />
         <input
           type="text"
@@ -78,7 +79,7 @@ export default function Dashboard() {
           placeholder="Razorpay Key ID"
           className="w-full p-4 mt-6 rounded-lg bg-neutral-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           onChange={handleChange}
-          value={form.razorpaykeyid || session?.user?.razorpaykeyid || ""}
+          value={form.razorpaykeyid || ""}
         />
         <input
           type="text"
@@ -88,7 +89,7 @@ export default function Dashboard() {
           onChange={handleChange}
           id="razorpaysecret"
           value={
-            form.razorpaykeysecret || session?.user?.razorpaykeysecret || ""
+            form.razorpaykeysecret ||  ""
           }
         />
         <button
