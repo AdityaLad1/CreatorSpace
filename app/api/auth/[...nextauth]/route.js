@@ -19,20 +19,23 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user }) {
-      try {
-        await connectDB();
-        const existingUser = await User.findOne({ email: user.email });
-        if (!existingUser) {
-          await User.create({
-            email: user.email,
-            username: user.email.split("@")[0],
-          });
+    async signIn({ user, account }) {
+      if(account.provider == 'github'){
+
+        try {
+          await connectDB();
+          const existingUser = await User.findOne({ email: user.email });
+          if (!existingUser) {
+            await User.create({
+              email: user.email,
+              username: user.email.split("@")[0],
+            });
+          }
+          return true;
+        } catch (error) {
+          console.error("SignIn Error:", error);
+          return false;
         }
-        return true;
-      } catch (error) {
-        console.error("SignIn Error:", error);
-        return false;
       }
     },
     async session({ session }) {
