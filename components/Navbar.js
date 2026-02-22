@@ -13,7 +13,7 @@ const Navbar = () => {
         className="logo font-bold text-lg flex gap-2 justify-center items-center"
         href={"/"}
       >
-        <span>Patreon Clone V2</span>
+        <span>CreatorSpace</span>
         <lord-icon
           src="https://cdn.lordicon.com/oyxqonng.json"
           trigger="loop"

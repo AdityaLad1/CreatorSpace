@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import { use } from "react";
 
 export default function Home() {
@@ -51,7 +51,6 @@ export default function Home() {
         <div className="flex gap-5 justify-around">
           <div className="item space-y-3 flex flex-col items-center justify-center ">
             <lord-icon
-              // className=" bg-slate-600 rounded-full  text-black"
               src="https://cdn.lordicon.com/bcrbahnt.json"
               trigger="loop"
               delay="3000"
@@ -102,7 +101,6 @@ export default function Home() {
         <div className="flex gap-5 justify-around">
           <div className="item space-y-3 flex flex-col items-center justify-center ">
             <lord-icon
-              // className=" bg-slate-600 rounded-full  text-black"
               src="https://cdn.lordicon.com/mnlnsxhq.json"
               trigger="loop"
               delay="3000"

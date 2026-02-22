@@ -3,28 +3,24 @@
 import { useState } from "react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export default function UserDropdown() {
   const [open, setOpen] = useState(false);
+  const { data: session} = useSession();
 
   return (
     <div
       className="relative"
       onClick={() => setOpen(!open)}
-      // onBlur={() =>
-      //   setTimeout(() => {
-      //     setOpen(false);
-      //   }, 100)
-      // }
-      // close the dropdown when hovering outside of it for 100ms
       onMouseLeave={() => {
         setTimeout(() => {
           setOpen(false);
         }, 3000);
       }}
-
     >
-      <button onClick={() => setOpen(!open)}
+      <button
+        onClick={() => setOpen(!open)}
         className="flex justify-center items-center text-white bg-gradient-to-br from-purple-600 to-blue-500 
               hover:bg-gradient-to-bl focus:ring-4 focus:outline-none 
               focus:ring-blue-300 dark:focus:ring-blue-800 
@@ -62,7 +58,7 @@ export default function UserDropdown() {
 
             <li>
               <Link
-                href="/yourpage"
+                href={`/${session.user.name}`}
                 className="block p-2 rounded hover:bg-neutral-700"
               >
                 Your Page

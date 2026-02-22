@@ -20,8 +20,7 @@ export const authOptions = {
   ],
   callbacks: {
     async signIn({ user, account }) {
-      if(account.provider == 'github'){
-
+      if (account.provider == "github") {
         try {
           await connectDB();
           const existingUser = await User.findOne({ email: user.email });
@@ -34,6 +33,22 @@ export const authOptions = {
           return true;
         } catch (error) {
           console.error("SignIn Error:", error);
+          return false;
+        }
+      }
+      if (account.provider == "google") {
+        try {
+          await connectDB();
+          const existingUser = await User.findOne({ email: user.email });
+          if (!existingUser) {
+            await User.create({
+              email: user.email,
+              username: user.email.split("@")[0],
+            });
+          }
+          return true;
+        } catch (error) {
+          console.error("Signin Error:", error);
           return false;
         }
       }
@@ -50,7 +65,6 @@ export const authOptions = {
           session.user.username = dbUser.username;
           // session.user.name = dbUser.username; // override display name
         }
-
         return session;
       } catch (error) {
         console.error("Session Error:", error);
