@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Patreon Clone V2",
+  title: "CreatorSpace",
   description: "A crowdfunding platform built with Next.js",
 };
 

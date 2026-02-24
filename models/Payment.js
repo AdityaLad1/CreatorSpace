@@ -3,8 +3,8 @@ import { Schema, model } from "mongoose";
 
 const PaymentSchema = new Schema({
   name: { type: String, require: true },
-  to_user: { type: String, require: true },
-  oid: { type: String, requireq: true },
+  to_username: { type: String, require: true },
+  oid: { type: String, require: true },
   message: String,
   amount: { type: Number, require: true },
   createdAt: { type: Date, default: Date.now },

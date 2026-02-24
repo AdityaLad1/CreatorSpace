@@ -19,39 +19,29 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account }) {
-      if (account.provider == "github") {
+    async signIn({ user, account, profile }) {
+      if (account.provider == "github" || account.provider == "google") {
         try {
           await connectDB();
           const existingUser = await User.findOne({ email: user.email });
+
           if (!existingUser) {
+            const newUsername = user.email.split("@")[0];
+
             await User.create({
               email: user.email,
-              username: user.email.split("@")[0],
+              username: newUsername,
+              name: user.name,
+              profilePic: user.image,
             });
           }
           return true;
         } catch (error) {
-          console.error("SignIn Error:", error);
+          console.error("Error connecting to DB: ", error);
           return false;
         }
       }
-      if (account.provider == "google") {
-        try {
-          await connectDB();
-          const existingUser = await User.findOne({ email: user.email });
-          if (!existingUser) {
-            await User.create({
-              email: user.email,
-              username: user.email.split("@")[0],
-            });
-          }
-          return true;
-        } catch (error) {
-          console.error("Signin Error:", error);
-          return false;
-        }
-      }
+      return false;
     },
     async session({ session }) {
       try {
@@ -63,7 +53,6 @@ export const authOptions = {
 
         if (dbUser) {
           session.user.username = dbUser.username;
-          // session.user.name = dbUser.username; // override display name
         }
         return session;
       } catch (error) {
