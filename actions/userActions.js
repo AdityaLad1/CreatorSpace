@@ -22,9 +22,9 @@ export const initiate = async (amount, to_username, paymentForm) => {
     await Payment.create({
       oid: x.id,
       amount: amount,
-      to_username: to_username,
-      name: paymentForm.name,
-      message: paymentForm.message,
+      to_username:  to_username,
+      name: paymentForm.name[0],
+      message: paymentForm.message[0],
     });
     return x;
   } catch (error) {

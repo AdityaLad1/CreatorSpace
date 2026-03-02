@@ -5,12 +5,13 @@ import animatedDungeunImage from "../../components/icons/animatedDungeonMap.gif"
 import cat2 from "../../components/icons/cat2.jpeg";
 import PaymentsPage from "@/components/PaymentsPage";
 
-export default async function Username({ params }) {
+export default async function Username() {
   // const { username } = ;
+  
 
   return (
     <>
-    <PaymentsPage  params={await params}/>
+    <PaymentsPage  />
     </>
   );
 }
