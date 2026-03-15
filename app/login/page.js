@@ -13,7 +13,11 @@ export default function Login() {
       router.push("/dashboard")
     }
   },[session,router])
-  
+//   useEffect(() => {
+//   if (status === "authenticated") {
+//     router.push(`/${session.user.username}`);
+//   }
+// }, [status, session, router]);
   return (
     <div className=" text-white py-14 container mx-auto">
       <h1 className="text-center font-bold text-3xl">

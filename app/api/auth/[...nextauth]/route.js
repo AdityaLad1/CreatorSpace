@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import User from "@/models/User";
 import Payment from "@/models/Payment";
 import connectDB from "@/db/connectDb";
-import { signIn } from "next-auth/react";
+
 
 export const authOptions = {
   providers: [

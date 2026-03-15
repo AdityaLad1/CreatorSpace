@@ -58,7 +58,7 @@ export default function UserDropdown() {
 
             <li>
               <Link
-                href={`/${session.user.name}`}
+                href={`/${session?.user?.username}`}
                 className="block p-2 rounded hover:bg-neutral-700"
               >
                 Your Page
