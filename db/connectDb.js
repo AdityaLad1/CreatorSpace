@@ -2,14 +2,9 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    if (mongoose.connection.readyState === 1) {
-      return;
-    }
+    if (mongoose.connection.readyState === 1) return;
 
-    const conn = await mongoose.connect(
-      "mongodb://localhost:27017/creatorSpace",
-    );
-
+    const conn = await mongoose.connect(process.env.MONGODB_URI);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error("Database connection failed:", error.message);
