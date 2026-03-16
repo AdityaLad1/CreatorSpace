@@ -1,10 +1,14 @@
-# 🎯 Patreon Clone — Version 2
+# ☕ CreatorSpace
 
-A complete rebuild of my earlier Patreon clone project, focused on clean architecture, maintainability, and production-quality practices.
+**🌐 Live:** [patreon-clone-v2.vercel.app](https://patreon-clone-v2.vercel.app)
+
+A full-stack creator support platform where fans can back their favourite creators instantly — no complicated setups, no hidden fees.
+
+> Previously developed as "Patreon Clone V2". The project has been renamed to **CreatorSpace** to better reflect its identity and purpose.
 
 ---
 
-## 🚀 Why Version 2?
+## 🚀 Why CreatorSpace?
 
 I had previously built a Patreon clone, but:
 
@@ -13,47 +17,79 @@ I had previously built a Patreon clone, but:
 * ❌ Commit history was not professional
 * ❌ Many parts were rushed or experimental
 
-Instead of patching an unstable foundation, I decided to **rebuild the project from scratch** with better engineering discipline.
+Instead of patching an unstable foundation, I decided to **rebuild the project from scratch** with better engineering discipline and ship it as a real, production-deployed application.
 
-This version focuses on:
+---
 
-* ✅ Clean component structure
-* ✅ Predictable state management
-* ✅ Professional Git commit practices
-* ✅ Responsive UI from day one
-* ✅ Scalability for future backend integration
-* ✅ Clear separation of concerns
+## ✨ Features
 
-This repository represents my **current development standards and engineering maturity.**
+* 🔐 GitHub & Google OAuth login via NextAuth
+* 👤 Creator profile pages with cover & profile photos
+* 💸 Razorpay payment integration
+* 🧾 Payment history & supporter list
+* ⚙️ Creator dashboard to manage profile & payment settings
+* 📱 Fully responsive UI (mobile + desktop)
+* 🗄️ MongoDB Atlas database (cloud-hosted)
+* 🚀 Deployed on Vercel
 
 ---
 
 ## 🧱 Tech Stack
 
-**Frontend**
-
-* Next.js (App Router)
-* React
-* Tailwind CSS
-
-**Planned (Later Phases)**
-
-* Node.js (API Routes / Server Actions)
-* MongoDB
-* Authentication (NextAuth / JWT)
-* Payments (Stripe Test Mode)
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 15 (App Router) |
+| Frontend | React, Tailwind CSS |
+| Auth | NextAuth.js (GitHub, Google) |
+| Database | MongoDB + Mongoose |
+| Payments | Razorpay |
+| Hosting | Vercel |
+| DB Hosting | MongoDB Atlas |
 
 ---
 
-## ✨ Planned Features
+## 📦 Installation
 
-* Creator discovery page
-* Creator profile pages
-* Subscription tiers UI
-* Login / Signup UI
-* Dashboard layout
-* Responsive design
-* Reusable UI components
+```bash
+# Clone the repo
+git clone https://github.com/your-username/creatorspace.git
+cd creatorspace
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Fill in your values in .env.local
+
+# Run the development server
+npm run dev
+```
+
+---
+
+## 🔑 Environment Variables
+
+Create a `.env.local` file in the root with the following:
+
+```env
+GITHUB_ID=
+GITHUB_SECRET=
+
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=
+
+NEXT_PUBLIC_URL=http://localhost:3000
+
+MONGODB_URI=
+
+NEXT_PUBLIC_KEY_ID=
+KEY_ID=
+KEY_SECRET=
+```
 
 ---
 
@@ -68,23 +104,11 @@ This repository represents my **current development standards and engineering ma
 
 ---
 
-## 📦 Installation
-
-````bash
-npm install
-npm run dev
-```bash
-npm install
-npm run dev
-````
-
----
-
 ## 📌 Notes
 
-* This project is intentionally rebuilt instead of modifying the old implementation.
+* This project is an intentional rebuild of the original Patreon clone.
 * The previous version contained bugs and non-professional commits and has been archived.
-* This version reflects a clean engineering approach.
+* Renamed from **Patreon Clone V2** → **CreatorSpace** to reflect a real product identity.
 
 ---
 
@@ -94,4 +118,4 @@ npm run dev
 
 ---
 
-> This project is a learning-driven rebuild intended to demonstrate real-world frontend engineering practices.
+> This project demonstrates real-world full-stack engineering — from auth and payments to database integration and production deployment.
