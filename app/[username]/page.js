@@ -17,3 +17,10 @@ export default async function Username({ params }) {
     </>
   );
 }
+export async function generateMetadata({ params }) {
+  const { username } = await params;
+  return {
+    title: `${username} | CreatorSpace`,
+    description: `Support ${username} on CreatorSpace`,
+  };
+}
