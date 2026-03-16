@@ -2,18 +2,13 @@
 import React, { useEffect } from "react";
 import Script from "next/script";
 import Image from "next/image";
-import animatedDungeunImage from "./icons/animatedDungeonMap.gif";
-import cat2 from "./icons/cat2.jpeg";
 import { fetchPayments, initiate, fetchuser } from "@/actions/userActions";
 import { useParams, useSearchParams } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { notFound } from "next/navigation";
 
 export default function PaymentsPage() {
-  const { data: session, user } = useSession();
   const { username } = useParams();
   const [paymentform, setpaymentform] = useState({
     name: "",
@@ -28,6 +23,7 @@ export default function PaymentsPage() {
   useEffect(() => {
     getData();
   }, []);
+
   useEffect(() => {
     if (searchParms.has("paymentdone") == true) {
       toast("Payment has been made", {
@@ -75,15 +71,12 @@ export default function PaymentsPage() {
     });
 
     const dbPayments = await fetchPayments(username);
-
     setPayments(dbPayments);
   };
 
   const pay = async (amt) => {
     let amount = amt * 100;
-
     let a = await initiate(amount, username, paymentform);
-
     let orderId = a.id;
     var options = {
       key: currentUser.razorpaykeyid,
@@ -95,22 +88,17 @@ export default function PaymentsPage() {
       order_id: orderId,
       callback_url: `${process.env.NEXT_PUBLIC_URL}/api/razorpay`,
       prefill: {
-        //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
-        name: "Gaurav Kumar", //your customer's name
+        name: "Gaurav Kumar",
         email: "gaurav.kumar@example.com",
-        contact: "+919876543210", //Provide the customer's phone number for better conversion rates
+        contact: "+919876543210",
       },
-      notes: {
-        address: "Razorpay Corporate Office",
-      },
-      theme: {
-        color: "#3399cc",
-      },
+      notes: { address: "Razorpay Corporate Office" },
+      theme: { color: "#3399cc" },
     };
     var rzp1 = new window.Razorpay(options);
-
     rzp1.open();
   };
+
   return (
     <div>
       <ToastContainer
@@ -135,17 +123,12 @@ export default function PaymentsPage() {
               alt="Cover"
               fill
               className="object-center"
-              // priority
               loading="eager"
               unoptimized
               sizes="100vw"
             />
           )}
-
-          <div
-            className="absolute -bottom-20 left-1/2 -translate-x-1/2 border-white border-2 w-50 h-50
-                      rounded-full overflow-hidden"
-          >
+          <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 border-white border-2 w-50 h-50 rounded-full overflow-hidden">
             {currentUser.profilePic && (
               <Image
                 src={currentUser.profilePic}
@@ -158,6 +141,7 @@ export default function PaymentsPage() {
             )}
           </div>
         </div>
+
         <div className="info flex justify-center items-center my-24 flex-col gap-2">
           <div className="font-bold">@{username}</div>
           <div className="text-slate-400">Lets help {username}</div>
@@ -165,37 +149,32 @@ export default function PaymentsPage() {
             {payments.length} Payments. {currentUser.name} has raised ₹
             {payments.reduce((a, b) => a + b.amount, 0)}
           </div>
-          <div className="payment flex gap-3 w-[80%]">
-            <div className="supporters w-1/2 bg-slate-800 rounded-lg p-8">
-              <h2
-                className="text-2xl
-               font-bold my-5"
-              >
-                Supporters
-              </h2>
-              <ul className="mx-5 text-lg ">
+
+          <div className="payment flex flex-col md:flex-row gap-3 w-full px-4 md:w-[80%]">
+            <div className="supporters w-full md:w-1/2 bg-slate-800 rounded-lg p-8">
+              <h2 className="text-2xl font-bold my-5">Supporters</h2>
+              <ul className="mx-5 text-lg">
                 {payments.length == 0 && <li>No payments yet</li>}
-                {payments.map((p) => {
-                  return (
-                    <li key={p._id} className="my-4 flex items-center gap-2">
-                      <lord-icon
-                        src="https://cdn.lordicon.com/vrexohmd.json"
-                        trigger="loop"
-                        delay="3000"
-                        stroke="bold"
-                        style={{ width: 40, height: 40 }}
-                      />
-                      <span>
-                        {p.name} donated{" "}
-                        <span className="text-green-500">₹{p.amount}</span> with
-                        a message "{p.message}"
-                      </span>
-                    </li>
-                  );
-                })}
+                {payments.map((p) => (
+                  <li key={p._id} className="my-4 flex items-center gap-2">
+                    <lord-icon
+                      src="https://cdn.lordicon.com/vrexohmd.json"
+                      trigger="loop"
+                      delay="3000"
+                      stroke="bold"
+                      style={{ width: 40, height: 40 }}
+                    />
+                    <span>
+                      {p.name} donated{" "}
+                      <span className="text-green-500">₹{p.amount}</span> with a
+                      message "{p.message}"
+                    </span>
+                  </li>
+                ))}
               </ul>
             </div>
-            <div className="makepayment w-1/2 bg-slate-800 rounded-lg  p-8 flex flex-col gap-3">
+
+            <div className="makepayment w-full md:w-1/2 bg-slate-800 rounded-lg p-8 flex flex-col gap-3">
               <h2 className="text-2xl font-bold my-5">Make a Payment</h2>
               <form className="flex flex-col gap-3">
                 <input
@@ -231,9 +210,7 @@ export default function PaymentsPage() {
                   paymentform.amount?.length < 1 ||
                   paymentform.message?.length < 4
                 }
-                onClick={() => {
-                  pay(Number(paymentform.amount));
-                }}
+                onClick={() => pay(Number(paymentform.amount))}
               >
                 Pay
               </button>
@@ -241,40 +218,16 @@ export default function PaymentsPage() {
                 <span className="text-slate-400">
                   Or choose from this Amounts
                 </span>
-
                 <div className="flex gap-3 my-3">
-                  <button
-                    onClick={() => {
-                      pay(5);
-                    }}
-                    className="bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 hover:scale-105"
-                  >
-                    ₹5
-                  </button>
-                  <button
-                    onClick={() => {
-                      pay(10);
-                    }}
-                    className="bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 hover:scale-105"
-                  >
-                    ₹10
-                  </button>
-                  <button
-                    onClick={() => {
-                      pay(20);
-                    }}
-                    className="bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 hover:scale-105"
-                  >
-                    ₹20
-                  </button>
-                  <button
-                    onClick={() => {
-                      pay(50);
-                    }}
-                    className="bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 hover:scale-105"
-                  >
-                    ₹50
-                  </button>
+                  {[5, 10, 20, 50].map((amt) => (
+                    <button
+                      key={amt}
+                      onClick={() => pay(amt)}
+                      className="bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 hover:scale-105"
+                    >
+                      ₹{amt}
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
