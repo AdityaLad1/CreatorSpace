@@ -6,7 +6,6 @@ import User from "@/models/User";
 import Payment from "@/models/Payment";
 import connectDB from "@/db/connectDb";
 
-
 export const authOptions = {
   providers: [
     GithubProvider({

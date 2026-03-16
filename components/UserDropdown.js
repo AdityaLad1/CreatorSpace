@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 
 export default function UserDropdown() {
   const [open, setOpen] = useState(false);
-  const { data: session} = useSession();
+  const { data: session } = useSession();
 
   return (
     <div

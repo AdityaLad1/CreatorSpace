@@ -8,9 +8,12 @@ import connectDB from "@/db/connectDb";
 export const initiate = async (amount, to_username, paymentForm) => {
   try {
     await connectDB();
+    let user = await User.findOne({ username: to_username });
+    const secret = user.razorpaykeysecret;
+    const rid = user.razorpaykeyid;
     var instance = new Razorpay({
-      key_id: process.env.KEY_ID,
-      key_secret: process.env.KEY_SECRET,
+      key_id: rid,
+      key_secret: secret,
     });
 
     let options = {
@@ -21,7 +24,7 @@ export const initiate = async (amount, to_username, paymentForm) => {
     let x = await instance.orders.create(options);
     await Payment.create({
       oid: x.id,
-      amount: amount/100,
+      amount: amount / 100,
       to_username: to_username,
       name: paymentForm.name,
       message: paymentForm.message,
@@ -45,7 +48,7 @@ export const fetchuser = async (username) => {
 
 export const fetchPayments = async (username) => {
   await connectDB();
-  let p = await Payment.find({ to_username: username,done:true })
+  let p = await Payment.find({ to_username: username, done: true })
     .sort({ amount: -1 })
     .lean();
   return JSON.parse(JSON.stringify(p)) || null;
@@ -59,6 +62,12 @@ export const updateProfile = async (data, oldUsername) => {
     if (u) {
       return { error: "User already exists" };
     }
+    await User.updateOne({ email: ndata.email }, ndata);
+    await Payment.updateMany(
+      { to_username: oldUsername },
+      { to_username: ndata.username },
+    );
+  } else {
+    await User.updateOne({ email: ndata.email }, { $set: ndata });
   }
-  await User.updateOne({ email: ndata.email }, { $set: ndata });
 };

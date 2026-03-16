@@ -5,9 +5,12 @@ import Image from "next/image";
 import animatedDungeunImage from "./icons/animatedDungeonMap.gif";
 import cat2 from "./icons/cat2.jpeg";
 import { fetchPayments, initiate, fetchuser } from "@/actions/userActions";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 
 export default function PaymentsPage() {
   const { data: session, user } = useSession();
@@ -19,34 +22,59 @@ export default function PaymentsPage() {
   });
   const [currentUser, setCurrentUser] = useState({});
   const [payments, setPayments] = useState([]);
+  const searchParms = useSearchParams();
+  const router = useRouter();
 
   useEffect(() => {
     getData();
-    console.log(paymentform.amount);
   }, []);
+  useEffect(() => {
+    if (searchParms.has("paymentdone") == true) {
+      toast("Payment has been made", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    }
+    router.push(`/${username}`);
+  }, []);
+
   const handleChange = (e) => {
     setpaymentform({ ...paymentform, [e.target.name]: e.target.value });
   };
 
   const getData = async () => {
-    console.log(username);
     let name = username;
     const u = await fetchuser(name);
-    console.log(u);
 
     if (!u) {
-      console.log("User does not exist");
+      toast("User does not exist", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
       return;
     }
 
-     setCurrentUser({
+    setCurrentUser({
       ...u,
       coverPic: u.coverPic || "./icons/animatedDungeonMap.gif",
-      profilePic: u.profilePic ||"./icons/cat2.jpeg",
+      profilePic: u.profilePic || "./icons/cat2.jpeg",
     });
 
     const dbPayments = await fetchPayments(username);
-    console.log(dbPayments);
 
     setPayments(dbPayments);
   };
@@ -85,47 +113,57 @@ export default function PaymentsPage() {
   };
   return (
     <div>
-      <Script
-        src="https://checkout.razorpay.com/v1/checkout.js"
-      ></Script>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
+      <Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
       <>
         <div className="cover w-full relative h-87.5">
-          {currentUser.coverPic && 
-          <Image
-          src={currentUser.coverPic}
-          alt="Cover"
-          fill
-          className="object-center"
-          // priority
-          loading="eager"
-          unoptimized
-          sizes="100vw"
-          />
-        }
+          {currentUser.coverPic && (
+            <Image
+              src={currentUser.coverPic}
+              alt="Cover"
+              fill
+              className="object-center"
+              // priority
+              loading="eager"
+              unoptimized
+              sizes="100vw"
+            />
+          )}
 
           <div
             className="absolute -bottom-20 left-1/2 -translate-x-1/2 border-white border-2 w-50 h-50
                       rounded-full overflow-hidden"
           >
-            {currentUser.profilePic && 
-            <Image
-            src={currentUser.profilePic}
-            alt="Profile"
-            fill
-            className="object-cover"
-            sizes="120px"
-            priority
-            />
-          }
+            {currentUser.profilePic && (
+              <Image
+                src={currentUser.profilePic}
+                alt="Profile"
+                fill
+                className="object-cover"
+                sizes="120px"
+                priority
+              />
+            )}
           </div>
         </div>
         <div className="info flex justify-center items-center my-24 flex-col gap-2">
           <div className="font-bold">@{username}</div>
+          <div className="text-slate-400">Lets help {username}</div>
           <div className="text-slate-400">
-            Creating animated battle maps for D&D and fantasy tabletop games
-          </div>
-          <div className="text-slate-400">
-            21,820 members .1,272 Posts .$12,180/month
+            {payments.length} Payments. {currentUser.name} has raised ₹
+            {payments.reduce((a, b) => a + b.amount, 0)}
           </div>
           <div className="payment flex gap-3 w-[80%]">
             <div className="supporters w-1/2 bg-slate-800 rounded-lg p-8">
@@ -136,7 +174,7 @@ export default function PaymentsPage() {
                 Supporters
               </h2>
               <ul className="mx-5 text-lg ">
-                {payments.length ==0 && <li>No payments yet</li>}
+                {payments.length == 0 && <li>No payments yet</li>}
                 {payments.map((p) => {
                   return (
                     <li key={p._id} className="my-4 flex items-center gap-2">
@@ -187,7 +225,12 @@ export default function PaymentsPage() {
               </form>
               <button
                 type="button"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 hover:scale-105 w-full  "
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 hover:scale-105 w-full disabled:bg-slate-400"
+                disabled={
+                  paymentform.name?.length < 3 ||
+                  paymentform.amount?.length < 1 ||
+                  paymentform.message?.length < 4
+                }
                 onClick={() => {
                   pay(Number(paymentform.amount));
                 }}

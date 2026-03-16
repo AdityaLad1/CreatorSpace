@@ -8,7 +8,7 @@ const UserSchema = new Schema({
   profilePic: { type: String },
   coverPic: { type: String },
   razorpaykeyid: String,
- razorpaykeysecret: String,
+  razorpaykeysecret: String,
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });
