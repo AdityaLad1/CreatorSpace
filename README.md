@@ -34,17 +34,44 @@ Instead of patching an unstable foundation, I decided to **rebuild the project f
 
 ---
 
+## 📸 Screenshots
+
+### 🏠 Home
+![Home 1](./screenshots/Home-1.png)
+![Home 2](./screenshots/Home-2.png)
+![Home 3](./screenshots/Home-3.png)
+![Home 4](./screenshots/Home-4.png)
+
+### 👤 Creator Profile
+![User 1](./screenshots/User-1.png)
+![User 2](./screenshots/User-2.png)
+
+### ⚙️ Dashboard
+![Dashboard](./screenshots/Dashboard.png)
+
+### 📖 About
+![About 1](./screenshots/About-1.png)
+![About 2](./screenshots/About-2.png)
+![About 3](./screenshots/About-3.png)
+
+### 🔐 Login
+![Login](./screenshots/Login.png)
+
+---
+
 ## 🧱 Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | Next.js 15 (App Router) |
-| Frontend | React, Tailwind CSS |
-| Auth | NextAuth.js (GitHub, Google) |
-| Database | MongoDB + Mongoose |
-| Payments | Razorpay |
-| Hosting | Vercel |
-| DB Hosting | MongoDB Atlas |
+| Layer | Technology | Version |
+|-------|-----------|---------|
+| Framework | Next.js (App Router) | 16.1.4 |
+| Frontend | React | 19.2.3 |
+| Styling | Tailwind CSS | 4 |
+| Auth | NextAuth.js (GitHub, Google) | 4.24.13 |
+| Database | MongoDB + Mongoose | 9.2.1 |
+| Payments | Razorpay | 2.9.6 |
+| Notifications | React Toastify | 11.0.5 |
+| Hosting | Vercel | — |
+| DB Hosting | MongoDB Atlas | — |
 
 ---
 
