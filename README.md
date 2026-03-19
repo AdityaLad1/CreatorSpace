@@ -1,23 +1,22 @@
 # ☕ CreatorSpace
 
-**🌐 Live:** [patreon-clone-v2.vercel.app](https://patreon-clone-v2.vercel.app)
+**🌐 Live:** [creator-space-zeta.vercel.app](https://creator-space-zeta.vercel.app)
 
 A full-stack creator support platform where fans can back their favourite creators instantly — no complicated setups, no hidden fees.
-
-> Previously developed as "Patreon Clone V2". The project has been renamed to **CreatorSpace** to better reflect its identity and purpose.
 
 ---
 
 ## 🚀 Why CreatorSpace?
 
-I had previously built a Patreon clone, but:
+CreatorSpace was built with one goal in mind — give every creator a dead-simple way to receive support from the people who love their work.
 
-* ❌ The codebase had multiple bugs
-* ❌ The architecture was not well structured
-* ❌ Commit history was not professional
-* ❌ Many parts were rushed or experimental
+This project focuses on:
 
-Instead of patching an unstable foundation, I decided to **rebuild the project from scratch** with better engineering discipline and ship it as a real, production-deployed application.
+* ✅ Clean component structure
+* ✅ Professional Git commit practices
+* ✅ Responsive UI on all devices
+* ✅ Real-world backend integration
+* ✅ Production deployment
 
 ---
 
@@ -128,14 +127,6 @@ KEY_SECRET=
 * Mobile-first responsiveness
 * Incremental feature delivery
 * Long-term maintainability
-
----
-
-## 📌 Notes
-
-* This project is an intentional rebuild of the original Patreon clone.
-* The previous version contained bugs and non-professional commits and has been archived.
-* Renamed from **Patreon Clone V2** → **CreatorSpace** to reflect a real product identity.
 
 ---
 
